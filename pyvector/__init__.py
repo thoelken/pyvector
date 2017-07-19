@@ -2,13 +2,14 @@ class Style(object):
     def __str__(self):
         if len(self.__dict__) < 1:
             return ''
-        s_str = ''.join(['%s:%s;' % (k, str(v)) for k, v in self.__dict__.items()])
+        s_str = ' '.join(['%s: %s;' % (k.replace('_', '-'), str(v))
+                          for k, v in self.__dict__.items() if v])
         return ' style="' + s_str + '"'
 
 
 class Node(object):
     TAG = ''
-    PRIVATE_ATTR = ['style', 'parent']
+    PRIVATE_ATTR = ['style', 'parent', 'class_name']
 
     def __init__(self, x=None, y=None):
         if x is not None:
@@ -16,6 +17,7 @@ class Node(object):
         if y is not None:
             self.y = y
         self.style = Style()
+        self.class_name = ''
 
     def translate(self, tx, ty=None):
         y = ''
@@ -41,7 +43,9 @@ class Node(object):
         self.transform += 'rotate(%f%s)' % (float(angle), p)
 
     def attr_str(self):
-        r = ' '.join(['%s="%s"' % (k, str(v)) for k, v in self.__dict__.items()
+        if self.class_name:
+            self.__dict__['class'] = self.class_name
+        r = ' '.join(['%s="%s"' % (k.replace('_', '-'), str(v)) for k, v in self.__dict__.items()
                       if k not in self.PRIVATE_ATTR and v])
         if not r:
             return ''
