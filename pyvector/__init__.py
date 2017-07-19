@@ -88,7 +88,7 @@ class Group(Node):
         return '\n'.join([str(_) for _ in self.children])
 
     def css_str(self):
-        if self.CSS:
+        if 'CSS' in self.__class__.__dict__ and self.CSS:
             return '\n<style type="text/css"><![CDATA[ %s ]]></style>' % self.CSS
         return ''
 
