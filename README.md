@@ -2,7 +2,7 @@
 The module contains the most important SVG tags as classes with their most used attributes by default to reduce the need of writing SVG markup inside your Python code.
 
 ## Installation
-`pyvector` is available on PyPI:
+`pyvector` is available on [PyPI](https://pypi.python.org/pypi/pyvector/):
 
         pip install pyvector
 
