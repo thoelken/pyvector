@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='pyvector',
-      version='0.1.1',
+      version='0.1.2',
       description='Simple classes for SVG generation',
       url='http://github.com/thoelken/pyvector',
       author='Clemens Thoelken',
